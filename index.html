@@ -17,6 +17,7 @@
 <link rel="canonical" href="https://arsh871-bot.github.io/Portfolio-/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%230a0a0a'/><text x='50' y='72' font-size='65' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%23d4a843'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -128,7 +129,15 @@ section{padding:6rem 0}
 .skill-group{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:1.5rem}
 .skill-group-title{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:600;margin-bottom:1rem;color:var(--accent)}
 .skill-list{display:flex;flex-wrap:wrap;gap:.4rem}
-.skill-item{padding:.3rem .7rem;border-radius:4px;font-size:.78rem;background:rgba(255,255,255,.04);color:var(--text-muted);border:1px solid rgba(255,255,255,.06)}
+.skill-item{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;background:rgba(255,255,255,.04);color:var(--text-muted);border:1px solid rgba(255,255,255,.06)}
+.skill-item i{font-size:1rem;flex-shrink:0}
+
+/* GITHUB ACTIVITY */
+.github-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.github-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;transition:border-color .3s}
+.github-card:hover{border-color:rgba(212,168,67,.3)}
+.github-card img{width:100%;height:auto;display:block}
+@media(max-width:640px){.github-grid{grid-template-columns:1fr}}
 
 /* CONTACT */
 .contact-box{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:3rem;text-align:center;max-width:640px;margin:0 auto}
@@ -199,7 +208,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 /* CURRENTLY LEARNING */
 .learning-list{display:flex;flex-wrap:wrap;gap:.4rem}
-.learning-item{padding:.3rem .7rem;border-radius:4px;font-size:.78rem;background:rgba(74,158,255,.06);color:var(--blue);border:1px solid rgba(74,158,255,.15)}
+.learning-item{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;background:rgba(74,158,255,.06);color:var(--blue);border:1px solid rgba(74,158,255,.15)}
+.learning-item i{font-size:1rem;flex-shrink:0}
 
 /* SCROLL TO TOP */
 .scroll-top{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--card-border);color:var(--accent);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s;z-index:99}
@@ -445,54 +455,75 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="skill-group reveal">
         <div class="skill-group-title">Languages</div>
         <div class="skill-list">
-          <span class="skill-item">Python</span>
-          <span class="skill-item">JavaScript</span>
-          <span class="skill-item">C#</span>
-          <span class="skill-item">SQL</span>
-          <span class="skill-item">HTML</span>
-          <span class="skill-item">CSS</span>
+          <span class="skill-item"><i class="devicon-python-plain colored" aria-hidden="true"></i>Python</span>
+          <span class="skill-item"><i class="devicon-javascript-plain colored" aria-hidden="true"></i>JavaScript</span>
+          <span class="skill-item"><i class="devicon-csharp-plain colored" aria-hidden="true"></i>C#</span>
+          <span class="skill-item"><i class="devicon-azuresqldatabase-plain colored" aria-hidden="true"></i>SQL</span>
+          <span class="skill-item"><i class="devicon-html5-plain colored" aria-hidden="true"></i>HTML</span>
+          <span class="skill-item"><i class="devicon-css3-plain colored" aria-hidden="true"></i>CSS</span>
         </div>
       </div>
       <div class="skill-group reveal">
         <div class="skill-group-title">Frameworks &amp; Frontend</div>
         <div class="skill-list">
-          <span class="skill-item">React</span>
-          <span class="skill-item">Next.js</span>
-          <span class="skill-item">FastAPI</span>
-          <span class="skill-item">TailwindCSS</span>
-          <span class="skill-item">Bootstrap</span>
-          <span class="skill-item">Firebase</span>
+          <span class="skill-item"><i class="devicon-react-original colored" aria-hidden="true"></i>React</span>
+          <span class="skill-item"><i class="devicon-nextjs-plain" aria-hidden="true"></i>Next.js</span>
+          <span class="skill-item"><i class="devicon-fastapi-plain colored" aria-hidden="true"></i>FastAPI</span>
+          <span class="skill-item"><i class="devicon-tailwindcss-original colored" aria-hidden="true"></i>TailwindCSS</span>
+          <span class="skill-item"><i class="devicon-bootstrap-plain colored" aria-hidden="true"></i>Bootstrap</span>
+          <span class="skill-item"><i class="devicon-firebase-plain colored" aria-hidden="true"></i>Firebase</span>
         </div>
       </div>
       <div class="skill-group reveal">
         <div class="skill-group-title">Tools &amp; Cloud</div>
         <div class="skill-list">
-          <span class="skill-item">Git / GitHub</span>
-          <span class="skill-item">Docker</span>
-          <span class="skill-item">AWS (S3, Lambda, Bedrock)</span>
-          <span class="skill-item">VS Code</span>
-          <span class="skill-item">Figma</span>
-          <span class="skill-item">REST APIs</span>
+          <span class="skill-item"><i class="devicon-git-plain colored" aria-hidden="true"></i>Git / GitHub</span>
+          <span class="skill-item"><i class="devicon-docker-plain colored" aria-hidden="true"></i>Docker</span>
+          <span class="skill-item"><i class="devicon-amazonwebservices-plain-wordmark colored" aria-hidden="true"></i>AWS</span>
+          <span class="skill-item"><i class="devicon-vscode-plain colored" aria-hidden="true"></i>VS Code</span>
+          <span class="skill-item"><i class="devicon-figma-plain colored" aria-hidden="true"></i>Figma</span>
+          <span class="skill-item"><i class="devicon-postman-plain colored" aria-hidden="true"></i>REST APIs</span>
         </div>
       </div>
       <div class="skill-group reveal">
         <div class="skill-group-title">Workflow</div>
         <div class="skill-list">
-          <span class="skill-item">Agile / Kanban</span>
-          <span class="skill-item">Code Reviews</span>
-          <span class="skill-item">Sprint Planning</span>
-          <span class="skill-item">CI/CD Basics</span>
-          <span class="skill-item">Figma to Code</span>
+          <span class="skill-item"><i class="devicon-jira-plain colored" aria-hidden="true"></i>Agile / Kanban</span>
+          <span class="skill-item"><i class="devicon-github-original" aria-hidden="true"></i>Code Reviews</span>
+          <span class="skill-item"><i class="devicon-github-original" aria-hidden="true"></i>Sprint Planning</span>
+          <span class="skill-item"><i class="devicon-githubactions-plain colored" aria-hidden="true"></i>CI/CD</span>
+          <span class="skill-item"><i class="devicon-figma-plain colored" aria-hidden="true"></i>Figma to Code</span>
         </div>
       </div>
       <div class="skill-group reveal">
         <div class="skill-group-title">Currently Learning</div>
         <div class="learning-list">
-          <span class="learning-item">TypeScript</span>
-          <span class="learning-item">PostgreSQL</span>
-          <span class="learning-item">Testing (Jest)</span>
-          <span class="learning-item">AWS Solutions Architect</span>
+          <span class="learning-item"><i class="devicon-typescript-plain colored" aria-hidden="true"></i>TypeScript</span>
+          <span class="learning-item"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i>PostgreSQL</span>
+          <span class="learning-item"><i class="devicon-jest-plain colored" aria-hidden="true"></i>Testing (Jest)</span>
+          <span class="learning-item"><i class="devicon-amazonwebservices-plain-wordmark colored" aria-hidden="true"></i>AWS Solutions Architect</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="github-activity">
+  <div class="container">
+    <div class="section-label reveal">GitHub</div>
+    <h2 class="section-title reveal">Coding activity</h2>
+    <div class="github-grid reveal">
+      <div class="github-card">
+        <img
+          src="https://github-readme-stats.vercel.app/api?username=ARSH871-bot&show_icons=true&hide_border=true&bg_color=111111&title_color=d4a843&text_color=888888&icon_color=d4a843&count_private=true&hide_rank=false"
+          alt="Arsh Vhora's GitHub stats"
+          loading="lazy">
+      </div>
+      <div class="github-card">
+        <img
+          src="https://github-readme-stats.vercel.app/api/top-langs/?username=ARSH871-bot&layout=compact&hide_border=true&bg_color=111111&title_color=d4a843&text_color=888888&langs_count=8"
+          alt="Arsh Vhora's most used languages"
+          loading="lazy">
       </div>
     </div>
   </div>
