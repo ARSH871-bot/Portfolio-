@@ -1,0 +1,12 @@
+{
+  "name": "arsh-portfolio",
+  "version": "1.0.0",
+  "description": "Arsh Vhora — Junior Full-Stack Developer Portfolio",
+  "scripts": {
+    "build:email": "mjml email/contact-notification.mjml -o email/contact-notification.html",
+    "watch:email": "mjml email/contact-notification.mjml -o email/contact-notification.html -w"
+  },
+  "devDependencies": {
+    "mjml": "^4.18.0"
+  }
+}
