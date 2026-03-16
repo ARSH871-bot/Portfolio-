@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arsh Vhora — Full-Stack Developer</title>
+<title>Arsh Vhora — Junior Full-Stack Developer | Auckland, NZ</title>
+<meta name="description" content="Arsh Vhora — Auckland-based junior full-stack developer available for part-time roles. Interning at AI Sentinels. BIT Level 7, Otago Polytechnic. React, Python, FastAPI.">
+<meta property="og:title" content="Arsh Vhora — Junior Full-Stack Developer | Auckland, NZ">
+<meta property="og:description" content="Auckland-based junior developer available for part-time roles. Currently interning at AI Sentinels building AI detection tools with React, Python, and FastAPI.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arsh871-bot.github.io/Portfolio-/">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -25,9 +30,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;opacity:.03;ba
 nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(10,10,10,.8);border-bottom:1px solid var(--card-border)}
 nav .container{display:flex;justify-content:space-between;align-items:center;height:64px}
 nav .logo{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--accent);letter-spacing:-.02em}
-nav .links{display:flex;gap:2rem}
+nav .links{display:flex;gap:2rem;align-items:center}
 nav .links a{color:var(--text-muted);text-decoration:none;font-size:.875rem;transition:color .2s}
-nav .links a:hover{color:var(--accent)}
+nav .links a:hover,nav .links a.active{color:var(--accent)}
+.nav-cv{padding:.4rem 1rem;border:1px solid var(--accent);border-radius:5px;color:var(--accent) !important;font-size:.8rem !important;transition:all .2s !important}
+.nav-cv:hover{background:var(--accent);color:var(--bg) !important}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative}
@@ -37,13 +44,25 @@ nav .links a:hover{color:var(--accent)}
 .hero-tag::before{content:'';width:2rem;height:1px;background:var(--accent)}
 .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:1.5rem}
 .hero h1 .highlight{color:var(--accent)}
-.hero p{font-size:1.125rem;color:var(--text-muted);max-width:560px;margin-bottom:2.5rem;line-height:1.8}
+.typed-wrap{font-family:'Syne',sans-serif;font-size:clamp(1rem,2.5vw,1.4rem);font-weight:600;color:var(--text-muted);margin-bottom:1.25rem;min-height:2rem}
+.typed-text{color:var(--accent)}
+.typed-cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:2px;vertical-align:middle;animation:blink .7s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero p{font-size:1.05rem;color:var(--text-muted);max-width:580px;margin-bottom:2.5rem;line-height:1.8}
 .hero-links{display:flex;gap:1rem;flex-wrap:wrap}
 .hero-links a{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:6px;text-decoration:none;font-size:.875rem;font-weight:500;transition:all .25s}
 .btn-primary{background:var(--accent);color:var(--bg)}
 .btn-primary:hover{background:#e0b44e;transform:translateY(-1px)}
 .btn-outline{border:1px solid var(--card-border);color:var(--text)}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-cv{border:1px solid rgba(212,168,67,.4);color:var(--accent)}
+.btn-cv:hover{background:var(--accent-dim);border-color:var(--accent)}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-border);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;margin-top:3.5rem}
+.stat-item{background:var(--card);padding:1.5rem;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:800;color:var(--accent);line-height:1}
+.stat-label{font-size:.75rem;color:var(--text-dim);margin-top:.35rem;text-transform:uppercase;letter-spacing:.08em}
 
 /* SECTIONS */
 section{padding:6rem 0}
@@ -51,29 +70,51 @@ section{padding:6rem 0}
 .section-label::before{content:'';width:1.5rem;height:1px;background:var(--accent)}
 .section-title{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:700;letter-spacing:-.02em;margin-bottom:3rem}
 
+/* EDUCATION */
+.edu-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:2rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;transition:border-color .3s}
+.edu-card:hover{border-color:rgba(212,168,67,.3)}
+.edu-degree{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.25rem}
+.edu-institution{color:var(--accent);font-size:.95rem;margin-bottom:.75rem}
+.edu-detail{font-size:.875rem;color:var(--text-muted);margin-bottom:.4rem}
+.edu-modules{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.edu-right{text-align:right}
+.edu-status{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;border-radius:100px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:.75rem;color:var(--green);margin-bottom:.5rem}
+.edu-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.edu-date{font-size:.8rem;color:var(--text-dim)}
+
 /* EXPERIENCE */
 .exp-grid{display:flex;flex-direction:column;gap:2rem}
 .exp-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:2rem;transition:border-color .3s}
 .exp-card:hover{border-color:rgba(212,168,67,.3)}
 .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
-.exp-role{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:600}
+.exp-role{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:600}
 .exp-company{font-size:.9rem;color:var(--accent);margin-top:.25rem}
 .exp-date{font-size:.8rem;color:var(--text-dim);white-space:nowrap}
-.exp-desc{font-size:.9rem;color:var(--text-muted);line-height:1.7}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.exp-bullets li{font-size:.875rem;color:var(--text-muted);line-height:1.65;padding-left:1.25rem;position:relative}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.75rem;top:.1rem}
 .exp-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
 .tag{padding:.25rem .75rem;border-radius:100px;font-size:.75rem;background:var(--accent-dim);color:var(--accent);font-weight:500}
 
 /* PROJECTS */
 .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
-.project-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.project-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:2rem;transition:all .3s;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .project-card:hover{border-color:rgba(212,168,67,.3);transform:translateY(-4px)}
 .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .3s}
 .project-card:hover::before{opacity:1}
-.project-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
-.project-tech{font-size:.75rem;color:var(--accent);margin-bottom:1rem;font-weight:500}
-.project-desc{font-size:.875rem;color:var(--text-muted);line-height:1.7}
-.project-link{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;font-size:.8rem;color:var(--accent);text-decoration:none;font-weight:500;transition:gap .2s}
+.project-card.featured{border-color:rgba(212,168,67,.2)}
+.project-card.featured::before{opacity:.5}
+.featured-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);background:var(--accent-dim);padding:.2rem .6rem;border-radius:4px;margin-bottom:.75rem;width:fit-content}
+.project-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.35rem}
+.project-tech{font-size:.75rem;color:var(--accent);margin-bottom:.85rem;font-weight:500}
+.project-desc{font-size:.85rem;color:var(--text-muted);line-height:1.75;flex:1}
+.project-bullets{list-style:none;margin-top:.75rem;display:flex;flex-direction:column;gap:.35rem}
+.project-bullets li{font-size:.8rem;color:var(--text-dim);padding-left:1rem;position:relative}
+.project-bullets li::before{content:'·';position:absolute;left:0;color:var(--accent)}
+.project-links{display:flex;gap:1rem;margin-top:1.25rem}
+.project-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;color:var(--accent);text-decoration:none;font-weight:500;transition:gap .2s}
 .project-link:hover{gap:.6rem}
+.project-link.disabled{color:var(--text-dim);pointer-events:none}
 
 /* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
@@ -83,31 +124,39 @@ section{padding:6rem 0}
 .skill-item{padding:.3rem .7rem;border-radius:4px;font-size:.78rem;background:rgba(255,255,255,.04);color:var(--text-muted);border:1px solid rgba(255,255,255,.06)}
 
 /* CONTACT */
-.contact-box{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:3rem;text-align:center;max-width:600px;margin:0 auto}
-.contact-box p{color:var(--text-muted);margin-bottom:2rem;font-size:1rem}
+.contact-box{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:3rem;text-align:center;max-width:640px;margin:0 auto}
+.contact-headline{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:.75rem}
+.contact-box p{color:var(--text-muted);margin-bottom:2rem;font-size:.95rem;line-height:1.75}
 .contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
-.contact-links a{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border:1px solid var(--card-border);border-radius:6px;color:var(--text);text-decoration:none;font-size:.85rem;transition:all .2s}
+.contact-links a{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.3rem;border:1px solid var(--card-border);border-radius:6px;color:var(--text);text-decoration:none;font-size:.85rem;transition:all .2s}
 .contact-links a:hover{border-color:var(--accent);color:var(--accent)}
+.contact-note{margin-top:1.5rem;font-size:.75rem;color:var(--text-dim)}
 
 /* FOOTER */
 footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;font-size:.8rem;color:var(--text-dim)}
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.fade-up{opacity:0;animation:fadeUp .7s ease forwards}
-.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}.delay-5{animation-delay:.5s}
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
 /* STATUS DOT */
 .status{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:100px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:.78rem;color:var(--green);margin-bottom:2rem}
 .status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-@media(max-width:640px){
+@media(max-width:768px){
   nav .links{gap:1rem}
+  .nav-cv{display:none}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
   .hero h1{font-size:2rem}
   .project-grid{grid-template-columns:1fr}
   .skills-grid{grid-template-columns:1fr}
   .contact-links{flex-direction:column;align-items:center}
+  .edu-card{flex-direction:column}
+  .edu-right{text-align:left}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -117,10 +166,12 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
   <div class="container">
     <div class="logo">arsh.dev</div>
     <div class="links">
+      <a href="#education">Education</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
+      <a href="./CV_Arsh_ready.pdf" target="_blank" class="nav-cv">Download CV ↓</a>
     </div>
   </div>
 </nav>
@@ -128,14 +179,62 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="status fade-up">Available for part-time roles in Auckland</div>
-      <div class="hero-tag fade-up delay-1">Full-Stack Developer</div>
-      <h1 class="fade-up delay-2">I'm <span class="highlight">Arsh Vhora</span>.<br>I build things for the web.</h1>
-      <p class="fade-up delay-3">Full-stack developer interning at AI Sentinels, building AI detection tools with React, Python, and FastAPI. Completing my BIT (Level 7) at Otago Polytechnic, Auckland.</p>
-      <div class="hero-links fade-up delay-4">
+      <div class="status">Open to part-time roles &middot; Auckland, NZ</div>
+      <div class="hero-tag">Junior Full-Stack Developer</div>
+      <h1>Hi, I'm <span class="highlight">Arsh Vhora</span>.<br>I build things for the web.</h1>
+      <div class="typed-wrap"><span class="typed-text" id="typed"></span><span class="typed-cursor"></span></div>
+      <p>Auckland-based developer currently interning at AI Sentinels, building AI detection tools with React, Python, and FastAPI. Completing my BIT (Level 7) at Otago Polytechnic Auckland — available for part-time junior developer or IT roles.</p>
+      <div class="hero-links">
         <a href="mailto:vhoraarsh91@gmail.com" class="btn-primary">Get in touch &rarr;</a>
+        <a href="./CV_Arsh_ready.pdf" target="_blank" class="btn-cv">Download CV ↓</a>
         <a href="https://github.com/ARSH871-bot" target="_blank" class="btn-outline">GitHub &nearr;</a>
         <a href="https://www.linkedin.com/in/arsh-vhora-4b8226312" target="_blank" class="btn-outline">LinkedIn &nearr;</a>
+      </div>
+
+      <div class="stats-bar reveal">
+        <div class="stat-item">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years Coding</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Internships</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">L7</div>
+          <div class="stat-label">BIT Degree</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="section-label reveal">Education</div>
+    <h2 class="section-title reveal">Where I'm studying</h2>
+    <div class="edu-card reveal">
+      <div class="edu-left">
+        <div class="edu-degree">Bachelor of Information Technology (Level 7)</div>
+        <div class="edu-institution">Otago Polytechnic &mdash; Auckland Campus</div>
+        <div class="edu-detail">Full-time &middot; Auckland, New Zealand</div>
+        <div class="edu-modules">
+          <span class="skill-item">Software Development</span>
+          <span class="skill-item">Database Systems</span>
+          <span class="skill-item">Web Technologies</span>
+          <span class="skill-item">Networking Fundamentals</span>
+          <span class="skill-item">Agile Project Management</span>
+          <span class="skill-item">Object-Oriented Programming</span>
+          <span class="skill-item">Systems Analysis</span>
+        </div>
+      </div>
+      <div class="edu-right">
+        <div class="edu-status">In Progress</div>
+        <div class="edu-date">Expected graduation: 2026</div>
       </div>
     </div>
   </div>
@@ -143,10 +242,11 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
 
 <section id="experience">
   <div class="container">
-    <div class="section-label">Experience</div>
-    <h2 class="section-title">Where I've worked</h2>
+    <div class="section-label reveal">Experience</div>
+    <h2 class="section-title reveal">Where I've worked</h2>
     <div class="exp-grid">
-      <div class="exp-card">
+
+      <div class="exp-card reveal">
         <div class="exp-header">
           <div>
             <div class="exp-role">Full-Stack Developer Intern</div>
@@ -154,29 +254,18 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
           </div>
           <div class="exp-date">Dec 2025 &mdash; Present</div>
         </div>
-        <div class="exp-desc">
-          Developing backend detection services in Python/FastAPI and frontend dashboards in React/Next.js for an AI-powered platform that identifies AI-generated text, image, and audio content. Integrating third-party AI APIs (AWS Bedrock, HuggingFace, OpenAI) and collaborating with data science engineers on model testing and deployment.
-        </div>
+        <ul class="exp-bullets">
+          <li>Built and maintained 5+ REST API endpoints using Python and FastAPI for AI content detection services (text, image, audio).</li>
+          <li>Integrated 3 third-party AI APIs (AWS Bedrock, HuggingFace, OpenAI) into the backend detection pipeline.</li>
+          <li>Developed frontend dashboard components in React and Next.js, displaying real-time detection results to end users.</li>
+          <li>Collaborated with data science engineers on model testing, deployment, and containerisation using Docker.</li>
+        </ul>
         <div class="exp-tags">
           <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">TailwindCSS</span>
         </div>
       </div>
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Front-End Development Intern</div>
-            <div class="exp-company">TechnoGuide Infosoft &mdash; Anand, India</div>
-          </div>
-          <div class="exp-date">Apr 2022 &mdash; Aug 2023</div>
-        </div>
-        <div class="exp-desc">
-          Delivered multiple client-facing static websites using HTML and CSS. Translated Figma mockups into pixel-accurate, responsive UI layouts. Recognised for rapid onboarding and consistent delivery across a 16-month internship.
-        </div>
-        <div class="exp-tags">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Figma</span><span class="tag">UI/UX</span>
-        </div>
-      </div>
-      <div class="exp-card">
+
+      <div class="exp-card reveal">
         <div class="exp-header">
           <div>
             <div class="exp-role">Shift Manager</div>
@@ -184,71 +273,140 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
           </div>
           <div class="exp-date">Apr 2024 &mdash; Present</div>
         </div>
-        <div class="exp-desc">
-          Leading high-volume shifts, training new crew members, and maintaining QSC standards. Demonstrates reliability, leadership, and the ability to balance work alongside full-time study and a development internship.
-        </div>
+        <ul class="exp-bullets">
+          <li>Lead shifts of 8–12 crew members during peak service periods, maintaining quality, service, and cleanliness standards.</li>
+          <li>Trained 10+ new crew members, reducing onboarding time through structured walkthroughs and real-time coaching.</li>
+          <li>Balancing this role concurrently with a full-time degree and a developer internship — demonstrating reliability and time management.</li>
+        </ul>
         <div class="exp-tags">
-          <span class="tag">Leadership</span><span class="tag">Training</span><span class="tag">Operations</span>
+          <span class="tag">Leadership</span><span class="tag">Training</span><span class="tag">Operations</span><span class="tag">Time Management</span>
         </div>
       </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Front-End Development Intern</div>
+            <div class="exp-company">TechnoGuide Infosoft &mdash; Anand, India</div>
+          </div>
+          <div class="exp-date">Apr 2022 &mdash; Aug 2023</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Delivered 8+ client-facing static websites using HTML and CSS over a 16-month internship.</li>
+          <li>Translated Figma mockups into pixel-accurate, responsive UI layouts across desktop and mobile breakpoints.</li>
+          <li>Consistently recognised for rapid onboarding and on-time delivery across all client projects.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Figma</span><span class="tag">Responsive Design</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <section id="projects">
   <div class="container">
-    <div class="section-label">Projects</div>
-    <h2 class="section-title">What I've built</h2>
+    <div class="section-label reveal">Projects</div>
+    <h2 class="section-title reveal">What I've built</h2>
     <div class="project-grid">
-      <div class="project-card">
-        <div class="project-name">Preloved &mdash; Marketplace</div>
-        <div class="project-tech">React &middot; Firebase &middot; Bootstrap &middot; TailwindCSS</div>
-        <div class="project-desc">A full-stack second-hand marketplace with secure authentication, real-time messaging, role-based dashboards, Firestore-integrated chat notifications, and complete CRUD features. Built using agile methodology with a Kanban board.</div>
-        <a href="https://github.com/ARSH871-bot" class="project-link" target="_blank">View on GitHub &rarr;</a>
+
+      <div class="project-card featured reveal">
+        <div class="featured-badge">&#9733; Featured Project</div>
+        <div class="project-name">Preloved — Second-Hand Marketplace</div>
+        <div class="project-tech">React &middot; Firebase &middot; Bootstrap (components) &middot; TailwindCSS (utilities)</div>
+        <div class="project-desc">Full-stack marketplace for buying and selling second-hand goods. Built end-to-end with a team using Agile/Kanban methodology.</div>
+        <ul class="project-bullets">
+          <li>Firebase Auth with role-based dashboards (buyer, seller, admin)</li>
+          <li>Real-time Firestore chat with unread message notifications</li>
+          <li>Full CRUD: listings, user profiles, and order management</li>
+        </ul>
+        <div class="project-links">
+          <!-- UPDATE: Replace href with your actual repo URL when ready -->
+          <a href="https://github.com/ARSH871-bot" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        </div>
       </div>
-      <div class="project-card">
+
+      <div class="project-card reveal">
         <div class="project-name">Shipping Management System</div>
         <div class="project-tech">C# &middot; JSON &middot; Windows Forms &middot; Figma</div>
-        <div class="project-desc">Desktop application with JSON-based persistent data handling, full CRUD operations for customers, orders, and shipment tracking. UI designed in Figma and built with Windows Forms.</div>
-        <a href="https://github.com/ARSH871-bot" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        <div class="project-desc">Desktop application for managing customers, orders, and shipment tracking with persistent data storage.</div>
+        <ul class="project-bullets">
+          <li>JSON-based data persistence — no external database required</li>
+          <li>Full CRUD across 3 entity types: customers, orders, shipments</li>
+          <li>UI designed in Figma and built to spec in Windows Forms</li>
+        </ul>
+        <div class="project-links">
+          <!-- UPDATE: Replace href with your actual repo URL when ready -->
+          <a href="https://github.com/ARSH871-bot" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        </div>
       </div>
-      <div class="project-card">
+
+      <div class="project-card reveal">
         <div class="project-name">Sports Club Management</div>
         <div class="project-tech">HTML &middot; CSS &middot; SQLite</div>
-        <div class="project-desc">Responsive website for tracking campus sports events and memberships with SQLite-backed user registration and streamlined club activity management.</div>
-        <a href="https://github.com/ARSH871-bot" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        <div class="project-desc">Responsive multi-page website for tracking campus sports events and club memberships.</div>
+        <ul class="project-bullets">
+          <li>SQLite-backed user registration and login system</li>
+          <li>Event scheduling and membership management</li>
+          <li>Fully responsive layout across desktop and mobile</li>
+        </ul>
+        <div class="project-links">
+          <!-- UPDATE: Replace href with your actual repo URL when ready -->
+          <a href="https://github.com/ARSH871-bot" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <section id="skills">
   <div class="container">
-    <div class="section-label">Skills</div>
-    <h2 class="section-title">What I work with</h2>
+    <div class="section-label reveal">Skills</div>
+    <h2 class="section-title reveal">What I work with</h2>
     <div class="skills-grid">
-      <div class="skill-group">
+      <div class="skill-group reveal">
         <div class="skill-group-title">Languages</div>
         <div class="skill-list">
-          <span class="skill-item">Python</span><span class="skill-item">JavaScript</span><span class="skill-item">C#</span><span class="skill-item">SQL</span><span class="skill-item">Java</span><span class="skill-item">HTML</span><span class="skill-item">CSS</span>
+          <span class="skill-item">Python</span>
+          <span class="skill-item">JavaScript</span>
+          <span class="skill-item">C#</span>
+          <span class="skill-item">SQL</span>
+          <span class="skill-item">HTML</span>
+          <span class="skill-item">CSS</span>
         </div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Frameworks & Frontend</div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Frameworks &amp; Frontend</div>
         <div class="skill-list">
-          <span class="skill-item">React</span><span class="skill-item">Next.js</span><span class="skill-item">FastAPI</span><span class="skill-item">TailwindCSS</span><span class="skill-item">Bootstrap</span><span class="skill-item">Firebase</span>
+          <span class="skill-item">React</span>
+          <span class="skill-item">Next.js</span>
+          <span class="skill-item">FastAPI</span>
+          <span class="skill-item">TailwindCSS</span>
+          <span class="skill-item">Bootstrap</span>
+          <span class="skill-item">Firebase</span>
         </div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Tools & Cloud</div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Tools &amp; Cloud</div>
         <div class="skill-list">
-          <span class="skill-item">Git / GitHub</span><span class="skill-item">Docker</span><span class="skill-item">AWS (S3, Lambda)</span><span class="skill-item">VS Code</span><span class="skill-item">Figma</span><span class="skill-item">REST APIs</span>
+          <span class="skill-item">Git / GitHub</span>
+          <span class="skill-item">Docker</span>
+          <span class="skill-item">AWS (S3, Lambda, Bedrock)</span>
+          <span class="skill-item">VS Code</span>
+          <span class="skill-item">Figma</span>
+          <span class="skill-item">REST APIs</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group reveal">
         <div class="skill-group-title">Workflow</div>
         <div class="skill-list">
-          <span class="skill-item">Agile / Kanban</span><span class="skill-item">Code Reviews</span><span class="skill-item">Sprint Planning</span><span class="skill-item">CI/CD Basics</span>
+          <span class="skill-item">Agile / Kanban</span>
+          <span class="skill-item">Code Reviews</span>
+          <span class="skill-item">Sprint Planning</span>
+          <span class="skill-item">CI/CD Basics</span>
+          <span class="skill-item">Figma to Code</span>
         </div>
       </div>
     </div>
@@ -257,23 +415,67 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
 
 <section id="contact">
   <div class="container">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">Let's connect</h2>
-    <div class="contact-box">
-      <p>I'm looking for a part-time junior developer or IT role in Auckland (up to 25 hrs/week). Currently on a student visa, completing my BIT (Level 7) at Otago Polytechnic.</p>
+    <div class="section-label reveal">Contact</div>
+    <h2 class="section-title reveal">Let's connect</h2>
+    <div class="contact-box reveal">
+      <div class="contact-headline">Available for part-time roles</div>
+      <p>I bring full-stack development skills and real internship experience to a part-time junior developer or IT role in Auckland. I'm reliable, fast to learn, and currently available up to 20 hrs/week alongside my degree.</p>
       <div class="contact-links">
-        <a href="mailto:vhoraarsh91@gmail.com">vhoraarsh91@gmail.com</a>
-        <a href="tel:+64225969576">+64 22 596 9576</a>
-        <a href="https://github.com/ARSH871-bot" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/arsh-vhora-4b8226312" target="_blank">LinkedIn</a>
+        <a href="mailto:vhoraarsh91@gmail.com">&#9993; vhoraarsh91@gmail.com</a>
+        <a href="https://github.com/ARSH871-bot" target="_blank">&#128196; GitHub</a>
+        <a href="https://www.linkedin.com/in/arsh-vhora-4b8226312" target="_blank">&#128101; LinkedIn</a>
+        <a href="./CV_Arsh_ready.pdf" target="_blank">&#8595; Download CV</a>
       </div>
+      <div class="contact-note">Auckland-based &middot; NZ student visa &middot; Eligible to work part-time</div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">&copy; 2026 Arsh Vhora. Built with care in Auckland.</div>
+  <div class="container">&copy; 2026 Arsh Vhora &middot; Built with care in Auckland, NZ</div>
 </footer>
+
+<script>
+// ── Typing animation ──────────────────────────────────────────────
+const phrases = [
+  'React & Next.js Developer',
+  'Python & FastAPI Developer',
+  'Available for Part-Time Roles',
+  'Based in Auckland, NZ',
+];
+let pi = 0, ci = 0, deleting = false;
+const el = document.getElementById('typed');
+
+function type() {
+  const phrase = phrases[pi];
+  if (!deleting) {
+    el.textContent = phrase.slice(0, ++ci);
+    if (ci === phrase.length) { deleting = true; setTimeout(type, 1800); return; }
+  } else {
+    el.textContent = phrase.slice(0, --ci);
+    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+  }
+  setTimeout(type, deleting ? 45 : 90);
+}
+type();
+
+// ── Scroll reveal ─────────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Active nav on scroll ──────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav .links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+</script>
 
 </body>
 </html>
