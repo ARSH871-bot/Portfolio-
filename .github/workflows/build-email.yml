@@ -1,0 +1,31 @@
+name: Build Email Templates
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'email/**.mjml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile MJML templates
+        run: npm run build:email
+
+      - name: Commit compiled HTML
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'ci: auto-compile MJML email templates'
+          file_pattern: 'email/*.html'
