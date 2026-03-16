@@ -90,14 +90,28 @@ section{padding:6rem 0}
 .edu-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 .edu-date{font-size:.8rem;color:var(--text-dim)}
 
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:5px;top:16px;bottom:16px;width:2px;background:linear-gradient(to bottom,var(--accent) 0%,rgba(212,168,67,.08) 100%)}
+.tl-entry{position:relative;padding-bottom:2rem}
+.tl-entry:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-1.85rem;top:1.5rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid rgba(212,168,67,.25);z-index:1;transition:border-color .3s,background .3s}
+.tl-entry:hover .tl-dot{border-color:var(--accent)}
+.tl-dot.active{border-color:var(--accent);background:rgba(212,168,67,.1)}
+.tl-dot.active::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(212,168,67,.2);animation:ring-pulse 2s ease-in-out infinite}
+@keyframes ring-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(1.7)}}
+.tl-type{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;margin-bottom:.5rem;display:inline-flex;align-items:center;gap:.35rem}
+.tl-type.work{color:var(--accent)}
+.tl-type.study{color:var(--blue)}
+
 /* EXPERIENCE */
-.exp-grid{display:flex;flex-direction:column;gap:2rem}
 .exp-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:2rem;transition:border-color .3s}
 .exp-card:hover{border-color:rgba(212,168,67,.3)}
 .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
 .exp-role{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:600}
 .exp-company{font-size:.9rem;color:var(--accent);margin-top:.25rem}
-.exp-date{font-size:.8rem;color:var(--text-dim);white-space:nowrap}
+.exp-date{font-size:.78rem;color:var(--text-dim);white-space:nowrap;background:rgba(255,255,255,.04);border:1px solid var(--card-border);padding:.2rem .65rem;border-radius:100px;height:fit-content;margin-top:.2rem}
+.exp-date.current{color:var(--green);border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.06)}
 .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
 .exp-bullets li{font-size:.875rem;color:var(--text-muted);line-height:1.65;padding-left:1.25rem;position:relative}
 .exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.75rem;top:.1rem}
@@ -343,60 +357,75 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <div class="container">
     <div class="section-label reveal">Experience</div>
     <h2 class="section-title reveal">Where I've worked</h2>
-    <div class="exp-grid">
+    <div class="timeline">
 
-      <div class="exp-card reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Full-Stack Developer Intern</div>
-            <div class="exp-company">AI Sentinels Ltd &mdash; Remote / Auckland, NZ</div>
+      <!-- AI Sentinels — current -->
+      <div class="tl-entry reveal">
+        <div class="tl-dot active"></div>
+        <div class="tl-type work">&#9679; Full-time · Remote / Auckland</div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Full-Stack Developer Intern</div>
+              <div class="exp-company">AI Sentinels Ltd</div>
+            </div>
+            <div class="exp-date current">Dec 2025 &mdash; Present</div>
           </div>
-          <div class="exp-date">Dec 2025 &mdash; Present</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Built and maintained 5+ REST API endpoints using Python and FastAPI for AI content detection services (text, image, audio).</li>
-          <li>Integrated 3 third-party AI APIs (AWS Bedrock, HuggingFace, OpenAI) into the backend detection pipeline.</li>
-          <li>Developed frontend dashboard components in React and Next.js, displaying real-time detection results to end users.</li>
-          <li>Collaborated with data science engineers on model testing, deployment, and containerisation using Docker.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">TailwindCSS</span>
+          <ul class="exp-bullets">
+            <li>Built and maintained 5+ REST API endpoints using Python and FastAPI for AI content detection services (text, image, audio).</li>
+            <li>Integrated 3 third-party AI APIs (AWS Bedrock, HuggingFace, OpenAI) into the backend detection pipeline.</li>
+            <li>Developed frontend dashboard components in React and Next.js, displaying real-time detection results to end users.</li>
+            <li>Collaborated with data science engineers on model testing, deployment, and containerisation using Docker.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">TailwindCSS</span>
+          </div>
         </div>
       </div>
 
-      <div class="exp-card reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Shift Manager</div>
-            <div class="exp-company">McDonald's &mdash; Balmoral, Auckland, NZ</div>
+      <!-- McDonald's — current -->
+      <div class="tl-entry reveal">
+        <div class="tl-dot active"></div>
+        <div class="tl-type work">&#9679; Part-time · Auckland</div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Shift Manager</div>
+              <div class="exp-company">McDonald's &mdash; Balmoral, Auckland, NZ</div>
+            </div>
+            <div class="exp-date current">Apr 2024 &mdash; Present</div>
           </div>
-          <div class="exp-date">Apr 2024 &mdash; Present</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Lead shifts of 8–12 crew members during peak service periods, maintaining quality, service, and cleanliness standards.</li>
-          <li>Trained 10+ new crew members, reducing onboarding time through structured walkthroughs and real-time coaching.</li>
-          <li>Balancing this role concurrently with a full-time degree and a developer internship — demonstrating reliability and time management.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">Leadership</span><span class="tag">Training</span><span class="tag">Operations</span><span class="tag">Time Management</span>
+          <ul class="exp-bullets">
+            <li>Lead shifts of 8–12 crew members during peak service periods, maintaining quality, service, and cleanliness standards.</li>
+            <li>Trained 10+ new crew members, reducing onboarding time through structured walkthroughs and real-time coaching.</li>
+            <li>Balancing this role concurrently with a full-time degree and a developer internship — demonstrating reliability and time management.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Leadership</span><span class="tag">Training</span><span class="tag">Operations</span><span class="tag">Time Management</span>
+          </div>
         </div>
       </div>
 
-      <div class="exp-card reveal">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Front-End Development Intern</div>
-            <div class="exp-company">TechnoGuide Infosoft &mdash; Anand, India</div>
+      <!-- TechnoGuide — past -->
+      <div class="tl-entry reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-type work">&#9679; Internship · Anand, India</div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Front-End Development Intern</div>
+              <div class="exp-company">TechnoGuide Infosoft</div>
+            </div>
+            <div class="exp-date">Apr 2022 &mdash; Aug 2023</div>
           </div>
-          <div class="exp-date">Apr 2022 &mdash; Aug 2023</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Delivered 8+ client-facing static websites using HTML and CSS over a 16-month internship.</li>
-          <li>Translated Figma mockups into pixel-accurate, responsive UI layouts across desktop and mobile breakpoints.</li>
-          <li>Consistently recognised for rapid onboarding and on-time delivery across all client projects.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Figma</span><span class="tag">Responsive Design</span>
+          <ul class="exp-bullets">
+            <li>Delivered 8+ client-facing static websites using HTML and CSS over a 16-month internship.</li>
+            <li>Translated Figma mockups into pixel-accurate, responsive UI layouts across desktop and mobile breakpoints.</li>
+            <li>Consistently recognised for rapid onboarding and on-time delivery across all client projects.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Figma</span><span class="tag">Responsive Design</span>
+          </div>
         </div>
       </div>
 
