@@ -1,0 +1,13 @@
+# Firebase
+firebase-debug.log
+.firebase/
+.firebaserc
+firebase.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp

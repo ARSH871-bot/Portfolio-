@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Gold glow -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#d4a843" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Top accent line -->
+  <rect width="1200" height="3" fill="#d4a843" opacity="0.6"/>
+
+  <!-- Left accent bar -->
+  <rect x="80" y="200" width="3" height="230" fill="#d4a843" opacity="0.4"/>
+
+  <!-- Tag line -->
+  <text x="110" y="222" font-family="sans-serif" font-size="14" font-weight="600"
+        fill="#d4a843" letter-spacing="4" text-transform="uppercase">JUNIOR FULL-STACK DEVELOPER</text>
+
+  <!-- Name -->
+  <text x="106" y="320" font-family="sans-serif" font-size="72" font-weight="800"
+        fill="#e8e6e3" letter-spacing="-2">Arsh Vhora</text>
+
+  <!-- Subtitle -->
+  <text x="110" y="375" font-family="sans-serif" font-size="22"
+        fill="#888888">React · Python · FastAPI · Auckland, NZ</text>
+
+  <!-- Status badge -->
+  <rect x="110" y="408" width="240" height="36" rx="18" fill="#0d2b1f" stroke="#34d399" stroke-width="1" stroke-opacity="0.4"/>
+  <circle cx="134" cy="426" r="5" fill="#34d399"/>
+  <text x="148" y="431" font-family="sans-serif" font-size="13" fill="#34d399" font-weight="500">Available for part-time roles</text>
+
+  <!-- Right side cards -->
+  <!-- Card 1 -->
+  <rect x="760" y="160" width="360" height="100" rx="10" fill="#111111" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="790" y="200" font-family="sans-serif" font-size="13" fill="#d4a843" font-weight="600">CURRENT INTERNSHIP</text>
+  <text x="790" y="225" font-family="sans-serif" font-size="16" fill="#e8e6e3" font-weight="600">AI Sentinels Ltd</text>
+  <text x="790" y="245" font-family="sans-serif" font-size="13" fill="#888888">Full-Stack Developer · Auckland</text>
+
+  <!-- Card 2 -->
+  <rect x="760" y="275" width="360" height="100" rx="10" fill="#111111" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="790" y="315" font-family="sans-serif" font-size="13" fill="#d4a843" font-weight="600">EDUCATION</text>
+  <text x="790" y="340" font-family="sans-serif" font-size="16" fill="#e8e6e3" font-weight="600">BIT Level 7</text>
+  <text x="790" y="360" font-family="sans-serif" font-size="13" fill="#888888">Otago Polytechnic · 2026</text>
+
+  <!-- Card 3 -->
+  <rect x="760" y="390" width="360" height="100" rx="10" fill="#111111" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="790" y="430" font-family="sans-serif" font-size="13" fill="#d4a843" font-weight="600">FEATURED PROJECT</text>
+  <text x="790" y="455" font-family="sans-serif" font-size="16" fill="#e8e6e3" font-weight="600">Preloved Marketplace</text>
+  <text x="790" y="475" font-family="sans-serif" font-size="13" fill="#888888">React · Firebase · Live Demo</text>
+
+  <!-- Bottom URL -->
+  <text x="110" y="560" font-family="sans-serif" font-size="16" fill="#555555">arsh871-bot.github.io/Portfolio-</text>
+</svg>
