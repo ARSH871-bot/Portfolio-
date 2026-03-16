@@ -160,6 +160,15 @@ section{padding:6rem 0}
 .github-card img{width:100%;height:auto;display:block}
 @media(max-width:640px){.github-grid{grid-template-columns:1fr}}
 
+/* WHY HIRE ME */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-top:0}
+.why-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:1.5rem;transition:border-color .3s}
+.why-card:hover{border-color:rgba(212,168,67,.3)}
+.why-icon{font-size:1.4rem;margin-bottom:.75rem}
+.why-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.why-body{font-size:.82rem;color:var(--text-muted);line-height:1.65}
+.why-proof{display:inline-block;margin-top:.65rem;font-size:.72rem;font-weight:600;color:var(--green);background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.2);padding:.2rem .6rem;border-radius:100px}
+
 /* CONTACT */
 .contact-box{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:3rem;text-align:center;max-width:640px;margin:0 auto}
 .contact-headline{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:.75rem}
@@ -349,12 +358,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
       <div class="stats-bar reveal">
         <div class="stat-item">
-          <div class="stat-num">2+</div>
-          <div class="stat-label">Years Coding</div>
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Git Commits</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">2+</div>
-          <div class="stat-label">Projects Built</div>
+          <div class="stat-num">224+</div>
+          <div class="stat-label">User Stories</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">2</div>
@@ -598,6 +607,51 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           src="https://github-readme-stats.vercel.app/api/top-langs/?username=ARSH871-bot&layout=compact&hide_border=true&bg_color=111111&title_color=d4a843&text_color=888888&langs_count=8"
           alt="Arsh Vhora's most used languages"
           loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why-hire">
+  <div class="container">
+    <div class="section-label reveal">Why hire me</div>
+    <h2 class="section-title reveal">What I bring to the team</h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🚀</div>
+        <div class="why-title">Shipped real products</div>
+        <div class="why-body">Both projects are live in production — not toy apps. Preloved serves real users; CP Ryzen has 318 commits, 205 tests, and a CI/CD pipeline optimised for cost.</div>
+        <span class="why-proof">500+ commits across both projects</span>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🧪</div>
+        <div class="why-title">Test-driven mindset</div>
+        <div class="why-body">I write tests as part of the feature, not after the fact. 80% code coverage enforced by the CI gate — nothing merges that breaks the coverage threshold.</div>
+        <span class="why-proof">205 unit tests · 80% coverage</span>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">♿</div>
+        <div class="why-title">Accessibility-first</div>
+        <div class="why-body">WCAG 2.1 Level AA compliance built from day one in Preloved — keyboard navigation, ARIA labelling, and screen reader support. Accessibility isn't a checkbox, it's a habit.</div>
+        <span class="why-proof">WCAG AA certified output</span>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">DevOps-aware developer</div>
+        <div class="why-body">I own the full pipeline — from writing code to configuring the CI/CD workflow that runs it. Cut monthly GitHub Actions costs by 95% through targeted pipeline optimisation.</div>
+        <span class="why-proof">95% CI/CD cost reduction</span>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🔀</div>
+        <div class="why-title">Cross-stack versatility</div>
+        <div class="why-body">Comfortable across JavaScript, TypeScript, Python, and C# — frontend (React, Next.js) and backend (FastAPI, .NET, Firebase). I can contribute wherever the team needs me.</div>
+        <span class="why-proof">4 languages · full-stack</span>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">📋</div>
+        <div class="why-title">Agile from day one</div>
+        <div class="why-body">Every project is sprint-tracked with a defined backlog and acceptance criteria per story. I understand Kanban, sprint planning, and how teams ship software iteratively.</div>
+        <span class="why-proof">224+ user stories tracked</span>
       </div>
     </div>
   </div>
