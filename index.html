@@ -22,9 +22,16 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0a0a0a;--card:#111;--card-border:#1a1a1a;
-  --text:#e8e6e3;--text-muted:#888;--text-dim:#555;
+  --text:#e8e6e3;--text-muted:#8f8f8f;--text-dim:#6b6b6b;
   --accent:#d4a843;--accent-dim:rgba(212,168,67,0.12);
   --blue:#4a9eff;--green:#34d399;--coral:#f0997b;
+}
+/* ADV-02: Respect OS colour preference — keep dark but soften bg slightly in light mode */
+@media(prefers-color-scheme:light){
+  :root{
+    --bg:#0f0f0f;--card:#161616;--card-border:#222;
+    --text-muted:#9a9a9a;--text-dim:#757575;
+  }
 }
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
@@ -185,6 +192,42 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
 .form-success{display:none;padding:1rem;border-radius:8px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:var(--green);font-size:.875rem;text-align:center;margin-top:.5rem}
 .form-success.show{display:block}
 @media(max-width:560px){.form-row{grid-template-columns:1fr}}
+
+/* PROJECT MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#111;border:1px solid var(--card-border);border-radius:16px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;transform:translateY(24px) scale(.98);transition:transform .3s;position:relative}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-header{padding:2rem 2rem 1.25rem;border-bottom:1px solid var(--card-border);position:sticky;top:0;background:#111;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.modal-close{background:none;border:1px solid var(--card-border);color:var(--text-muted);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.modal-close:hover{border-color:var(--accent);color:var(--accent)}
+.modal-badge{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);background:var(--accent-dim);padding:.2rem .6rem;border-radius:4px;display:inline-block;margin-bottom:.5rem}
+.modal-title{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.modal-body{padding:1.75rem 2rem 2rem}
+.modal-tech{font-size:.8rem;color:var(--accent);font-weight:500;margin-bottom:1.25rem;line-height:1.6}
+.modal-section{margin-bottom:1.5rem}
+.modal-section-title{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--text-dim);margin-bottom:.75rem}
+.modal-desc{font-size:.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.modal-highlights{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.modal-highlights li{font-size:.875rem;color:var(--text-muted);padding-left:1.25rem;position:relative;line-height:1.65}
+.modal-highlights li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.75rem;top:.1rem}
+.modal-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.modal-stat{background:rgba(255,255,255,.03);border:1px solid var(--card-border);border-radius:8px;padding:1rem;text-align:center}
+.modal-stat-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);line-height:1}
+.modal-stat-label{font-size:.7rem;color:var(--text-dim);margin-top:.3rem;text-transform:uppercase;letter-spacing:.06em}
+.modal-links{display:flex;gap:.75rem;flex-wrap:wrap}
+.modal-links a{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.3rem;border-radius:6px;text-decoration:none;font-size:.85rem;font-weight:500;transition:all .2s}
+.modal-links .btn-primary{background:var(--accent);color:var(--bg)}
+.modal-links .btn-primary:hover{background:#e0b44e}
+.modal-links .btn-outline{border:1px solid var(--card-border);color:var(--text)}
+.modal-links .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+/* Click-to-open cursor on project cards */
+.project-card{cursor:pointer}
+.project-card .project-link{cursor:pointer}
+@media(max-width:560px){
+  .modal-header,.modal-body{padding-left:1.25rem;padding-right:1.25rem}
+  .modal-stats{grid-template-columns:1fr 1fr}
+}
 
 /* PRINT */
 @media print{
@@ -439,7 +482,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <h2 class="section-title reveal">What I've built</h2>
     <div class="project-grid">
 
-      <div class="project-card featured reveal">
+      <div class="project-card featured reveal" data-modal="modal-preloved" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View Preloved project details">
         <div class="featured-badge">&#9733; Featured Project</div>
         <div class="project-name">Preloved — Second-Hand Marketplace</div>
         <div class="project-tech">React 19 &middot; Firebase 11 &middot; Node.js &middot; TailwindCSS</div>
@@ -456,7 +499,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card reveal" data-modal="modal-cpryzen" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View CP Ryzen project details">
         <div class="project-name">CP Ryzen — Shipping Management System</div>
         <div class="project-tech">C# &middot; .NET &middot; SQL Server &middot; Entity Framework &middot; GitHub Actions</div>
         <div class="project-desc">Enterprise-grade shipping and logistics management system. 318 commits, 85+ user stories across 10 epics, built with full CI/CD pipeline.</div>
@@ -605,6 +648,95 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 </section>
 </main>
 
+<!-- ── Modal: Preloved ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-preloved" role="dialog" aria-modal="true" aria-labelledby="modal-preloved-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-badge">&#9733; Featured Project</div>
+        <div class="modal-title" id="modal-preloved-title">Preloved — Second-Hand Marketplace</div>
+      </div>
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tech">React 19 &middot; Firebase 11 &middot; Node.js &middot; TailwindCSS &middot; Firestore &middot; Firebase Auth &middot; Firebase Hosting</div>
+
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-num">139</div><div class="modal-stat-label">User Stories</div></div>
+        <div class="modal-stat"><div class="modal-stat-num">89%</div><div class="modal-stat-label">Complete</div></div>
+        <div class="modal-stat"><div class="modal-stat-num">AA</div><div class="modal-stat-label">WCAG 2.1</div></div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <div class="modal-desc">A production-ready, mobile-first e-commerce platform for buying and selling second-hand goods. Built end-to-end using React 19 and Firebase, following Agile Kanban methodology with a tracked backlog of 156 user stories across 6 categories — all at 100% feature coverage.</div>
+        <div class="modal-desc">The platform is WCAG 2.1 Level AA compliant, with full keyboard navigation, ARIA labelling, and screen reader support built in from the ground up.</div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Key Features</div>
+        <ul class="modal-highlights">
+          <li>Role-based dashboards for buyers, sellers, and admins — each with tailored analytics and controls</li>
+          <li>Real-time Firestore chat with unread message notifications and read receipts</li>
+          <li>Social sharing to 7 platforms, referral system, and affiliate program</li>
+          <li>Full CRUD for listings, user profiles, orders, and inventory management</li>
+          <li>Firebase Auth with persistent sessions, email verification, and password reset</li>
+          <li>Mobile-first responsive design with smooth animations throughout</li>
+        </ul>
+      </div>
+
+      <div class="modal-links">
+        <a href="https://preloved-54326.web.app" target="_blank" rel="noopener" class="btn-primary">Live Demo &nearr;</a>
+        <a href="https://github.com/ARSH871-bot/PRELOVED-" target="_blank" rel="noopener" class="btn-outline">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: CP Ryzen ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-cpryzen" role="dialog" aria-modal="true" aria-labelledby="modal-cpryzen-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-badge">Enterprise Project</div>
+        <div class="modal-title" id="modal-cpryzen-title">CP Ryzen — Shipping Management System</div>
+      </div>
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tech">C# &middot; .NET Framework &middot; SQL Server &middot; Entity Framework &middot; GitHub Actions &middot; SAML &middot; OAuth 2.0</div>
+
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-num">318</div><div class="modal-stat-label">Commits</div></div>
+        <div class="modal-stat"><div class="modal-stat-num">205</div><div class="modal-stat-label">Unit Tests</div></div>
+        <div class="modal-stat"><div class="modal-stat-num">80%</div><div class="modal-stat-label">Coverage</div></div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <div class="modal-desc">An enterprise-grade shipping and logistics management system built with C# and .NET. The project spans 85+ user stories across 10 epics and was developed with a structured sprint cadence, Kanban board tracking, and a 15-minute developer onboarding path.</div>
+        <div class="modal-desc">The CI/CD pipeline — built with GitHub Actions — reduced billable pipeline minutes by 95%, from ~100 to ~10 minutes per month.</div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Key Features</div>
+        <ul class="modal-highlights">
+          <li>Full CRUD across 3 entity types: customers, orders, and shipments</li>
+          <li>SSO integration supporting SAML and OAuth 2.0 authentication standards</li>
+          <li>Time-based licensing system with code obfuscation and security hardening</li>
+          <li>205 unit tests maintaining 80% code coverage across the codebase</li>
+          <li>GitHub Actions CI/CD pipeline with 95% reduction in billable minutes</li>
+          <li>Comprehensive architecture docs — new devs productive in 15 minutes</li>
+        </ul>
+      </div>
+
+      <div class="modal-links">
+        <a href="https://github.com/ARSH871-bot/CP-ryzen" target="_blank" rel="noopener" class="btn-primary">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer role="contentinfo">
   <div class="container">&copy; 2026 Arsh Vhora &middot; Built with care in Auckland, NZ</div>
 </footer>
@@ -672,6 +804,37 @@ const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
 document.querySelectorAll('.mob-link').forEach(a => {
   a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+// ── Project modals ────────────────────────────────────────────────
+function openModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  overlay.querySelector('.modal-close').focus();
+}
+function closeModal(overlay) {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('[data-modal]').forEach(card => {
+  const open = () => openModal(card.dataset.modal);
+  card.addEventListener('click', e => {
+    if (e.target.closest('a')) return; // let links work normally
+    open();
+  });
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+});
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.querySelector('.modal-close').addEventListener('click', () => closeModal(overlay));
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay); });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(closeModal);
 });
 
 // ── Contact form (EmailJS) ─────────────────────────────────────────
