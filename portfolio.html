@@ -9,6 +9,8 @@
 <meta property="og:description" content="Auckland-based junior developer available for part-time roles. Currently interning at AI Sentinels building AI detection tools with React, Python, and FastAPI.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://arsh871-bot.github.io/Portfolio-/">
+<link rel="canonical" href="https://arsh871-bot.github.io/Portfolio-/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%230a0a0a'/><text x='50' y='72' font-size='65' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%23d4a843'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -144,9 +146,22 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
 .status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
+/* SCROLL TO TOP */
+.scroll-top{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--card-border);color:var(--accent);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s;z-index:99}
+.scroll-top.visible{opacity:1;pointer-events:all}
+.scroll-top:hover{background:var(--accent-dim);border-color:var(--accent)}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--text-muted);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,.97);border-bottom:1px solid var(--card-border);padding:1.5rem 2rem;flex-direction:column;gap:1.25rem;z-index:99}
+.mobile-menu a{color:var(--text-muted);text-decoration:none;font-size:1rem;transition:color .2s}
+.mobile-menu a:hover{color:var(--accent)}
+.mobile-menu.open{display:flex}
+
 @media(max-width:768px){
-  nav .links{gap:1rem}
-  .nav-cv{display:none}
+  nav .links{display:none}
+  .hamburger{display:flex}
   .stats-bar{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:640px){
@@ -173,8 +188,22 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
       <a href="#contact">Contact</a>
       <a href="./CV_Arsh_ready.pdf" target="_blank" class="nav-cv">Download CV ↓</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#education" class="mob-link">Education</a>
+  <a href="#experience" class="mob-link">Experience</a>
+  <a href="#projects" class="mob-link">Projects</a>
+  <a href="#skills" class="mob-link">Skills</a>
+  <a href="#contact" class="mob-link">Contact</a>
+  <a href="./CV_Arsh_ready.pdf" target="_blank">Download CV ↓</a>
+</div>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
 
 <section class="hero">
   <div class="container">
@@ -197,7 +226,7 @@ footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;
           <div class="stat-label">Years Coding</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">3+</div>
+          <div class="stat-num">2+</div>
           <div class="stat-label">Projects Built</div>
         </div>
         <div class="stat-item">
@@ -455,13 +484,27 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // ── Active nav on scroll ──────────────────────────────────────────
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav .links a[href^="#"]');
+const scrollTopBtn = document.getElementById('scrollTop');
+
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
   navLinks.forEach(a => {
     a.classList.toggle('active', a.getAttribute('href') === '#' + current);
   });
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
 }, { passive: true });
+
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ── Hamburger menu ────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+document.querySelectorAll('.mob-link').forEach(a => {
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
 </script>
 
 </body>
