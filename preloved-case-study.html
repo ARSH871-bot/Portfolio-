@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preloved Case Study — Arsh Vhora</title>
+<meta name="description" content="How I built a production-ready second-hand marketplace with React 19, Firebase, role-based dashboards, real-time chat, and WCAG 2.1 AA accessibility.">
+<meta property="og:title" content="Preloved Case Study — Arsh Vhora">
+<meta property="og:description" content="Building a production-ready marketplace: React 19, Firebase, WCAG 2.1 AA, 139 user stories shipped.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://arsh871-bot.github.io/Portfolio-/preloved-case-study.html">
+<meta property="og:image" content="https://arsh871-bot.github.io/Portfolio-/og-image.svg">
+<link rel="canonical" href="https://arsh871-bot.github.io/Portfolio-/preloved-case-study.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%230a0a0a'/><text x='50' y='72' font-size='65' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%23d4a843'>A</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--card:#111;--card-border:#1a1a1a;
+  --text:#e8e6e3;--text-muted:#8f8f8f;--text-dim:#6b6b6b;
+  --accent:#d4a843;--accent-dim:rgba(212,168,67,0.12);
+  --blue:#4a9eff;--green:#34d399;--coral:#f0997b;
+  --max-w:720px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(10,10,10,.85);border-bottom:1px solid var(--card-border)}
+nav .inner{max-width:1100px;margin:0 auto;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-back{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);text-decoration:none;font-size:.875rem;transition:color .2s}
+.nav-back:hover{color:var(--accent)}
+.nav-back::before{content:'←'}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--accent);text-decoration:none}
+.nav-demo{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;border:1px solid rgba(212,168,67,.3);border-radius:5px;color:var(--accent);text-decoration:none;font-size:.8rem;transition:all .2s}
+.nav-demo:hover{background:var(--accent-dim)}
+
+/* HERO */
+.cs-hero{padding:120px 0 64px;max-width:var(--max-w);margin:0 auto;padding-left:2rem;padding-right:2rem}
+.cs-tag{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.22em;color:var(--accent);display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem}
+.cs-tag::before{content:'';width:1.5rem;height:1px;background:var(--accent)}
+.cs-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-bottom:1.25rem}
+.cs-hero h1 span{color:var(--accent)}
+.cs-lead{font-size:1.1rem;color:var(--text-muted);line-height:1.8;max-width:600px;margin-bottom:2.5rem}
+.cs-meta{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--card-border)}
+.cs-meta-item{display:flex;flex-direction:column;gap:.2rem}
+.cs-meta-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-dim);font-weight:600}
+.cs-meta-value{font-size:.9rem;color:var(--text)}
+.cs-links{display:flex;gap:.75rem;flex-wrap:wrap}
+.cs-links a{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.3rem;border-radius:6px;text-decoration:none;font-size:.85rem;font-weight:500;transition:all .2s}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-primary:hover{background:#e0b44e;transform:translateY(-1px)}
+.btn-outline{border:1px solid var(--card-border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+/* STATS ROW */
+.cs-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-border);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;max-width:var(--max-w);margin:0 auto 4rem;padding:0 2rem}
+.cs-stat{background:var(--card);padding:1.5rem 1rem;text-align:center}
+.cs-stat-num{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:800;color:var(--accent);line-height:1}
+.cs-stat-label{font-size:.7rem;color:var(--text-dim);margin-top:.3rem;text-transform:uppercase;letter-spacing:.08em}
+
+/* CONTENT */
+.cs-content{max-width:var(--max-w);margin:0 auto;padding:0 2rem 6rem}
+.cs-section{margin-bottom:4rem}
+.cs-section-label{font-family:'Syne',sans-serif;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.25em;color:var(--accent);display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem}
+.cs-section-label::before{content:'';width:1.25rem;height:1px;background:var(--accent)}
+.cs-section h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:1.25rem;line-height:1.2}
+.cs-section p{color:var(--text-muted);line-height:1.85;margin-bottom:1rem;font-size:.95rem}
+.cs-section p:last-child{margin-bottom:0}
+
+/* CALLOUT */
+.callout{background:var(--card);border:1px solid var(--card-border);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.callout p{color:var(--text-muted);font-size:.9rem;margin:0;line-height:1.7}
+.callout strong{color:var(--text)}
+
+/* CHALLENGE CARDS */
+.challenge-grid{display:flex;flex-direction:column;gap:1.25rem;margin-top:1.25rem}
+.challenge-card{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:1.5rem}
+.challenge-card h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.challenge-card h4::before{content:'⚡';font-size:.85rem}
+.challenge-card p{font-size:.875rem;color:var(--text-muted);line-height:1.75;margin:0}
+.solution{margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--card-border);font-size:.85rem;color:var(--text-muted);line-height:1.7}
+.solution strong{color:var(--green)}
+
+/* TECH STACK */
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.25rem}
+.stack-item{background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:1.25rem}
+.stack-name{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+.stack-why{font-size:.8rem;color:var(--text-muted);line-height:1.6}
+
+/* TIMELINE */
+.feature-list{display:flex;flex-direction:column;gap:.85rem;margin-top:1.25rem}
+.feature-item{display:flex;align-items:flex-start;gap:1rem;padding:.9rem 1rem;background:var(--card);border:1px solid var(--card-border);border-radius:8px}
+.feature-icon{width:32px;height:32px;border-radius:6px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.feature-text{flex:1}
+.feature-title{font-size:.875rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
+.feature-desc{font-size:.8rem;color:var(--text-muted);line-height:1.6}
+
+/* RESULT BADGES */
+.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.25rem}
+.result-card{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:1.25rem;display:flex;align-items:flex-start;gap:.85rem}
+.result-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.result-title{font-size:.875rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.result-desc{font-size:.8rem;color:var(--text-muted);line-height:1.6}
+
+/* LEARNING */
+.learning-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.25rem}
+.learning-card{background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:1.25rem;border-top:2px solid var(--accent)}
+.learning-card h4{font-size:.85rem;font-weight:600;color:var(--accent);margin-bottom:.5rem}
+.learning-card p{font-size:.8rem;color:var(--text-muted);line-height:1.65;margin:0}
+
+/* CTA */
+.cs-cta{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:2.5rem;text-align:center;margin-top:4rem}
+.cs-cta h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:.75rem}
+.cs-cta p{color:var(--text-muted);margin-bottom:1.75rem;font-size:.95rem}
+.cs-cta .cs-links{justify-content:center}
+
+/* PROGRESS BAR */
+.progress-wrap{margin-top:1.25rem}
+.progress-item{margin-bottom:1rem}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+.progress-label{font-size:.8rem;color:var(--text-muted)}
+.progress-value{font-size:.8rem;font-weight:600;color:var(--accent)}
+.progress-bar{height:6px;background:rgba(255,255,255,.05);border-radius:100px;overflow:hidden}
+.progress-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent),rgba(212,168,67,.4));transition:width 1s ease}
+
+/* READING TIME */
+.reading-time{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--text-dim);margin-bottom:1rem}
+
+/* FOOTER */
+footer{padding:2rem 0;border-top:1px solid var(--card-border);text-align:center;font-size:.8rem;color:var(--text-dim);max-width:var(--max-w);margin:0 auto;padding-left:2rem;padding-right:2rem}
+
+@media(max-width:600px){
+  .cs-stats{grid-template-columns:repeat(2,1fr);margin:0 2rem 3rem}
+  .result-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="/" class="nav-back"> Back to Portfolio</a>
+    <a href="/" class="nav-logo">arsh.dev</a>
+    <a href="https://preloved-54326.web.app" target="_blank" rel="noopener" class="nav-demo">Live Demo &nearr;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-tag">Case Study</div>
+  <h1>Building <span>Preloved</span> —<br>A Marketplace From Scratch</h1>
+  <p class="cs-lead">How I designed and built a production-ready second-hand marketplace with role-based dashboards, real-time chat, WCAG 2.1 AA accessibility, and 139 shipped user stories.</p>
+  <div class="cs-meta">
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Role</span>
+      <span class="cs-meta-value">Full-Stack Developer</span>
+    </div>
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Stack</span>
+      <span class="cs-meta-value">React 19 · Firebase · Node.js</span>
+    </div>
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Type</span>
+      <span class="cs-meta-value">Academic + Personal Project</span>
+    </div>
+    <div class="cs-meta-item">
+      <span class="cs-meta-label">Status</span>
+      <span class="cs-meta-value" style="color:var(--green)">Live · 89% Complete</span>
+    </div>
+  </div>
+  <div class="reading-time">&#128337; 4 min read</div>
+  <div class="cs-links">
+    <a href="https://preloved-54326.web.app" target="_blank" rel="noopener" class="btn-primary">View Live Demo &nearr;</a>
+    <a href="https://github.com/ARSH871-bot/PRELOVED-" target="_blank" rel="noopener" class="btn-outline">View on GitHub &rarr;</a>
+    <a href="/" class="btn-outline">&#8592; Back to Portfolio</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="cs-stats">
+  <div class="cs-stat"><div class="cs-stat-num">139</div><div class="cs-stat-label">User Stories</div></div>
+  <div class="cs-stat"><div class="cs-stat-num">89%</div><div class="cs-stat-label">Complete</div></div>
+  <div class="cs-stat"><div class="cs-stat-num">AA</div><div class="cs-stat-label">WCAG 2.1</div></div>
+  <div class="cs-stat"><div class="cs-stat-num">3</div><div class="cs-stat-label">User Roles</div></div>
+</div>
+
+<!-- CONTENT -->
+<div class="cs-content">
+
+  <!-- Overview -->
+  <div class="cs-section">
+    <div class="cs-section-label">01 — Overview</div>
+    <h2>What is Preloved?</h2>
+    <p>Preloved is a full-stack marketplace web application for buying and selling second-hand goods. It was built as an academic project that I pushed well beyond the brief — tracking 156 user stories across 6 feature categories, all shipped to 100% completion in their respective epics.</p>
+    <p>The platform supports three distinct user types: buyers who browse and purchase listings, sellers who manage inventory and fulfil orders, and administrators who oversee the platform and access analytics dashboards. Each role has its own tailored interface, access controls, and feature set.</p>
+    <div class="callout">
+      <p><strong>The goal wasn't just to pass the assignment.</strong> I wanted to build something I'd be comfortable showing to a hiring manager as evidence of what I can ship — a real, live, working product with real users and real data.</p>
+    </div>
+  </div>
+
+  <!-- Problem -->
+  <div class="cs-section">
+    <div class="cs-section-label">02 — The Problem</div>
+    <h2>Why build a marketplace?</h2>
+    <p>Marketplaces are one of the most technically demanding types of web application. They require you to solve hard problems simultaneously: authentication, authorisation, real-time data sync, complex state management, file uploads, and multi-sided user experiences — all in one codebase.</p>
+    <p>Most student projects stop at a CRUD app with one user type and a simple database. I wanted to deliberately take on a project that would force me to make real architectural decisions: how to handle role-based access without leaking data, how to build a real-time messaging system that scales, and how to ship an accessible UI that works for everyone.</p>
+  </div>
+
+  <!-- Stack -->
+  <div class="cs-section">
+    <div class="cs-section-label">03 — Stack Decisions</div>
+    <h2>Why React + Firebase?</h2>
+    <p>Every technology choice had a reason behind it:</p>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-name">React 19</div>
+        <div class="stack-why">Component model maps well to a marketplace's many reusable UI pieces — listing cards, user badges, dashboards. Concurrent features in React 19 made transitions smoother.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">Firebase Firestore</div>
+        <div class="stack-why">Real-time listeners eliminate polling for chat notifications and inventory updates. Free tier is generous enough to run the live demo indefinitely.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">Firebase Auth</div>
+        <div class="stack-why">Handles session persistence, email verification, and password reset out of the box — removing significant security surface area from my own code.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">TailwindCSS</div>
+        <div class="stack-why">Utility-first approach kept the component styles co-located and eliminated the stylesheet naming problem at scale. Dark mode was trivial to implement.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">Firebase Hosting</div>
+        <div class="stack-why">One command deploy (<code>firebase deploy</code>), global CDN, automatic HTTPS. The live demo has zero ongoing cost.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">Agile / Kanban</div>
+        <div class="stack-why">Tracked all 156 user stories on a Kanban board with backlog, in-progress, and done columns. Gave visibility into completion and helped prioritise scope.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="cs-section">
+    <div class="cs-section-label">04 — Key Features Built</div>
+    <h2>What I actually shipped</h2>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">🔐</div>
+        <div class="feature-text">
+          <div class="feature-title">Role-based auth and access control</div>
+          <div class="feature-desc">Firebase Auth with Firestore-stored roles. Buyers, sellers, and admins each see a different dashboard and have different Firestore security rules applied at the database level — not just the UI.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💬</div>
+        <div class="feature-text">
+          <div class="feature-title">Real-time chat with unread notifications</div>
+          <div class="feature-desc">Firestore real-time listeners power the messaging system. Unread counts update instantly without polling. Read receipts mark messages as seen when the recipient opens the thread.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📦</div>
+        <div class="feature-text">
+          <div class="feature-title">Full seller inventory management</div>
+          <div class="feature-desc">Sellers can create, edit, and delete listings with image uploads. Status management handles active, sold, and draft states. Order tracking shows the full buyer journey per listing.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📊</div>
+        <div class="feature-text">
+          <div class="feature-title">Admin analytics dashboard</div>
+          <div class="feature-desc">Admins see platform-wide metrics: total listings, active users, order volumes, and category breakdowns. Built with aggregated Firestore queries — no external analytics service required.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">♿</div>
+        <div class="feature-text">
+          <div class="feature-title">WCAG 2.1 Level AA accessibility</div>
+          <div class="feature-desc">Full keyboard navigation, ARIA labels on all interactive elements, screen reader tested, and colour contrast ratios verified throughout. Accessibility was built in from the start, not retrofitted.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-text">
+          <div class="feature-title">Social sharing and referral system</div>
+          <div class="feature-desc">Listings can be shared to 7 platforms. A referral system tracks sign-ups via shared links. An affiliate program rewards users for driving new registrations — all tracked in Firestore.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Challenges -->
+  <div class="cs-section">
+    <div class="cs-section-label">05 — Challenges</div>
+    <h2>What was genuinely hard</h2>
+    <div class="challenge-grid">
+      <div class="challenge-card">
+        <h4>Firestore security rules for multi-role access</h4>
+        <p>The hardest single problem was writing Firestore security rules that allowed buyers to read listings, sellers to write only their own listings, and admins to read everything — without leaking data between roles.</p>
+        <div class="solution"><strong>Solution:</strong> Role stored as a Firestore field, read in security rules via <code>get()</code>. Each collection has explicit read/write rules checked against the authenticated user's role document. Tested manually across all three role types before deployment.</div>
+      </div>
+      <div class="challenge-card">
+        <h4>Real-time chat at scale without blowing the free tier</h4>
+        <p>Naive Firestore listeners on every conversation would exhaust the free read quota within days on an active platform. Getting real-time updates while minimising reads required careful query design.</p>
+        <div class="solution"><strong>Solution:</strong> Listeners attach only to conversations the current user participates in. Pagination limits the initial message load. Unread counts are stored as a separate counter field, avoiding a full message read on every notification check.</div>
+      </div>
+      <div class="challenge-card">
+        <h4>Building accessible components from scratch</h4>
+        <p>Most tutorials show how to build UI that looks accessible but breaks completely for keyboard users or screen readers. Modal dialogs, dropdown menus, and toast notifications all have specific ARIA patterns that took research to get right.</p>
+        <div class="solution"><strong>Solution:</strong> Read the WAI-ARIA Authoring Practices Guide for each component type. Implemented focus trapping in modals, roving tabindex in menus, and live regions for toast announcements. Tested with VoiceOver on macOS and NVDA on Windows.</div>
+      </div>
+      <div class="challenge-card">
+        <h4>Scope management across 156 user stories</h4>
+        <p>At 156 user stories, it became genuinely difficult to decide what to build next and to avoid scope creep on features that were already "done enough".</p>
+        <div class="solution"><strong>Solution:</strong> Treated the Kanban board as the single source of truth. Prioritised P1 stories first in each epic before touching P2. Set a rule: no new stories added to an epic already at 100% — any new ideas went into a backlog for v2.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="cs-section">
+    <div class="cs-section-label">06 — Results</div>
+    <h2>What was delivered</h2>
+
+    <div class="progress-wrap">
+      <div class="progress-item">
+        <div class="progress-header"><span class="progress-label">User stories shipped</span><span class="progress-value">139 / 156 (89%)</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:89%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header"><span class="progress-label">Feature categories at 100%</span><span class="progress-value">6 / 6</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header"><span class="progress-label">WCAG 2.1 AA compliance</span><span class="progress-value">Full</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+      </div>
+    </div>
+
+    <div class="result-grid" style="margin-top:1.5rem">
+      <div class="result-card">
+        <div class="result-icon">🚀</div>
+        <div>
+          <div class="result-title">Live and deployed</div>
+          <div class="result-desc">Running on Firebase Hosting with global CDN, automatic HTTPS, and zero ongoing cost on the free tier.</div>
+        </div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">♿</div>
+        <div>
+          <div class="result-title">Fully accessible</div>
+          <div class="result-desc">WCAG 2.1 AA compliant — keyboard navigable, screen reader tested, and contrast verified throughout.</div>
+        </div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">👥</div>
+        <div>
+          <div class="result-title">Three user roles</div>
+          <div class="result-desc">Buyer, seller, and admin — each with their own dashboard, data access rules, and feature set.</div>
+        </div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">⚡</div>
+        <div>
+          <div class="result-title">Real-time data</div>
+          <div class="result-desc">Chat, notifications, and inventory updates powered by Firestore real-time listeners — no polling.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Learnings -->
+  <div class="cs-section">
+    <div class="cs-section-label">07 — What I Learned</div>
+    <h2>Key takeaways</h2>
+    <div class="learning-grid">
+      <div class="learning-card">
+        <h4>Security at the data layer</h4>
+        <p>UI-level access control is not security. Firestore rules enforce access at the database level regardless of what the frontend does. This is the correct model.</p>
+      </div>
+      <div class="learning-card">
+        <h4>Accessibility is architecture</h4>
+        <p>Bolting accessibility on after the fact is expensive and incomplete. Building it in from the start — focus management, ARIA, keyboard nav — is faster and more robust.</p>
+      </div>
+      <div class="learning-card">
+        <h4>Scope discipline matters</h4>
+        <p>A backlog without prioritisation becomes feature debt. Tracking 156 user stories forced me to make explicit prioritisation decisions rather than building whatever was interesting.</p>
+      </div>
+      <div class="learning-card">
+        <h4>Firebase free tier is genuinely useful</h4>
+        <p>With careful query design, a real marketplace can run on the Firestore free tier indefinitely. Understanding read/write costs shaped every data access pattern I built.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cs-cta">
+    <h3>See it in action</h3>
+    <p>The live demo is fully functional — you can sign up as a buyer or seller and explore the platform.</p>
+    <div class="cs-links">
+      <a href="https://preloved-54326.web.app" target="_blank" rel="noopener" class="btn-primary">Open Live Demo &nearr;</a>
+      <a href="https://github.com/ARSH871-bot/PRELOVED-" target="_blank" rel="noopener" class="btn-outline">View Source on GitHub &rarr;</a>
+      <a href="/" class="btn-outline">&#8592; Back to Portfolio</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Arsh Vhora &middot; Auckland, New Zealand &middot; <a href="/" style="color:var(--accent);text-decoration:none">arsh.dev</a></p>
+</footer>
+
+<script>
+// Animate progress bars on scroll
+const bars = document.querySelectorAll('.progress-fill');
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = e.target.style.width;
+      barObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+bars.forEach(b => { const w = b.style.width; b.style.width = '0'; barObserver.observe(b); setTimeout(() => b.style.width = w, 100); });
+</script>
+
+</body>
+</html>
