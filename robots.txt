@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arsh871-bot.github.io/Portfolio-/sitemap.xml
